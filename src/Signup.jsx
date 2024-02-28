@@ -11,9 +11,6 @@ function Signup() {
     const [password, setPassword] = useState()
 
     return <div>
-        {email}
-        <br/>
-        {password}
         <center>
             <div style={{
                 paddingTop : "151px",
@@ -51,8 +48,8 @@ function Signup() {
                     variant="contained"
                     onClick = {() => {
                         function callback2(data){
-                            console.log(data)
                             localStorage.setItem("token", data.token)
+                            window.location = "/"
                         }
                         function callback1(res){
                             res.json().then(callback2)
