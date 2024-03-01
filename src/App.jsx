@@ -4,6 +4,7 @@ import Signin from './Signin.jsx';
 import Signup from './Signup.jsx';
 import AddCourse from "./AddCourse.jsx";
 import Courses from "./Courses.jsx";
+import Course from "./Course.jsx";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Appbar/>
           <Routes>
               <Route path="/addCourse" element={<AddCourse/>} />
+              <Route path="/course/:courseId" element={<Course/>} />
               <Route path="/courses" element={<Courses/>} />
               <Route path="/signin" element={<Signin/>} />
               <Route path="/signup" element={<Signup/>} />
