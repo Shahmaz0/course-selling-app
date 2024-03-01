@@ -9,6 +9,7 @@ function addCourse() {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
 
     return <div style={{display:"flex", justifyContent: "center", paddingTop: 80}}>
         <Card variant="outlined" style={{width: 400, padding: 20}}>
@@ -29,6 +30,14 @@ function addCourse() {
                 label={"Description"}
                 variant={"outlined"}
             />
+            <TextField
+                onChange={(e) =>{
+                    setImage(e.target.value)
+                }}
+                fullWidth={true}
+                label={"Image link"}
+                variant={"outlined"}
+            />
             <Button
                 variant="contained"
                 onClick={() => {
@@ -45,7 +54,7 @@ function addCourse() {
                         body : JSON.stringify({
                             title: title,
                             description : description,
-                            imageLink : "",
+                            imageLink : image,
                             published : true
                         }),
                         headers: {
