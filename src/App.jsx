@@ -5,6 +5,7 @@ import Signup from './Signup.jsx';
 import AddCourse from "./AddCourse.jsx";
 import Courses from "./Courses.jsx";
 import Course from "./Course.jsx";
+import { RecoilRoot } from 'recoil';
 
 
 function App() {
@@ -16,16 +17,18 @@ function App() {
       backgroundColor: "#eeeeee"}}>
 
 
+      <RecoilRoot>
       <Router>
           <Appbar/>
           <Routes>
-              <Route path="/addCourse" element={<AddCourse/>} />
-              <Route path="/course/:courseId" element={<Course/>} />
-              <Route path="/courses" element={<Courses/>} />
-              <Route path="/signin" element={<Signin/>} />
-              <Route path="/signup" element={<Signup/>} />
+              <Route path="/course-selling-app/addCourse" element={<AddCourse/>} />
+              <Route path="/course-selling-app/course/:courseId" element={<Course/>} />
+              <Route path="/course-selling-app/courses" element={<Courses/>} />
+              <Route path="/course-selling-app/signin" element={<Signin/>} />
+              <Route path="/course-selling-app/signup" element={<Signup/>} />
           </Routes>
       </Router>
+      </RecoilRoot>
     </div>
   )
 }
