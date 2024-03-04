@@ -50,16 +50,15 @@ function Signup() {
                 <Button
                     size='large'
                     variant="contained"
-                    onClick = {() => {
-                        function callback(response){
-                            let data = response.data;
-                            localStorage.setItem("token", data.token)
-                            window.location = "/"
-                        }
-                        axios.post("http://localhost:3000/admin/signup", {
+                    onClick = {async () => {
+
+                        const response = await axios.post("http://localhost:3000/admin/signup", {
                             username: email,
                             password: password
-                        }).then(callback)
+                        })
+                        let data = response.data;
+                        localStorage.setItem("token", data.token)
+                        window.location = "/"
 
                     }}>
                     Sign up
