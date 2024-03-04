@@ -2,6 +2,7 @@ import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import {useState} from "react";
+import axios from "axios";
 // import {useState} from "react";
 
 
@@ -10,10 +11,12 @@ function addCourse() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
+    const [price, setPrice] = useState(0);
 
     return <div style={{display:"flex", justifyContent: "center", paddingTop: 80}}>
         <Card variant="outlined" style={{width: 400, padding: 20}}>
             <TextField
+                style={{marginBottom: 10}}
                 onChange={(e) =>{
                     setTitle(e.target.value)
                 }}
@@ -23,6 +26,7 @@ function addCourse() {
             />
 
             <TextField
+                style={{marginBottom: 10}}
                 onChange={(e) =>{
                     setDescription(e.target.value)
                 }}
@@ -31,6 +35,7 @@ function addCourse() {
                 variant={"outlined"}
             />
             <TextField
+                style={{marginBottom: 10}}
                 onChange={(e) =>{
                     setImage(e.target.value)
                 }}
@@ -38,31 +43,32 @@ function addCourse() {
                 label={"Image link"}
                 variant={"outlined"}
             />
+            <TextField
+                style={{marginBottom: 10}}
+                onChange={(e) =>{
+                    setPrice(e.target.value)
+                }}
+                fullWidth={true}
+                label={"Course price"}
+                variant={"outlined"}
+            />
             <Button
                 variant="contained"
-                onClick={() => {
-                    function callback2(data) {
-                        alert("Course Added")
-                    }
+                onClick={async () => {
 
-                    function callback1(res) {
-                        res.json().then(callback2)
-                    }
-
-                    fetch("http://localhost:3000/admin/courses",{
-                        method: "POST",
-                        body : JSON.stringify({
-                            title: title,
-                            description : description,
-                            imageLink : image,
-                            published : true
-                        }),
+                    await axios.post("http://localhost:3000/admin/courses", {
+                        title: title,
+                        description: description,
+                        imageLink: image,
+                        published: true,
+                        price
+                    },{
                         headers: {
                             "content-type": "application/json",
                             "Authorization" : "Bearer " + localStorage.getItem("token")
                         }
-                    }).then(callback1)
-
+                    });
+                    alert("Course Added")
                 }}>
                 Add Course</Button>
         </Card>
